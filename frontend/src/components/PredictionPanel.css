@@ -1,0 +1,133 @@
+.prediction-panel {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.prediction-title {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  color: #333;
+  text-align: center;
+}
+
+.prediction-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.prediction-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.prediction-status {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.prediction-value {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.prediction-factors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.prediction-factor {
+  padding: 15px;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.factor-label {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  color: #666;
+}
+
+.factor-value {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.prediction-up {
+  border-top: 5px solid #4caf50;
+}
+
+.prediction-down {
+  border-top: 5px solid #f44336;
+}
+
+.prediction-flat {
+  border-top: 5px solid #ffb300;
+}
+
+.prediction-up .prediction-result {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #2e7d32;
+}
+
+.prediction-down .prediction-result {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: #c62828;
+}
+
+.prediction-flat .prediction-result {
+  background-color: rgba(255, 179, 0, 0.1);
+  color: #ff8f00;
+}
+
+.prediction-up .prediction-icon {
+  color: #2e7d32;
+}
+
+.prediction-down .prediction-icon {
+  color: #c62828;
+}
+
+.prediction-flat .prediction-icon {
+  color: #ff8f00;
+}
+
+.positive {
+  color: #2e7d32;
+}
+
+.negative {
+  color: #c62828;
+}
+
+.prediction-panel-loading,
+.prediction-panel-error {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .prediction-factors {
+    grid-template-columns: 1fr;
+  }
+} 
