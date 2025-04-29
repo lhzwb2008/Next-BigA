@@ -15,85 +15,83 @@
 - 前端: React.js
 - 数据来源: 长桥开放 API (LongPort OpenAPI)
 
-## 快速部署
+## 部署与运行
 
 ### 前提条件
 
 - Python 3.8+
 - Node.js 14+
 - npm 或 yarn
-- 长桥开放 API 的账号与密钥
+- 长桥开放 API 的账号与密钥（可选，没有密钥将使用模拟数据）
 
-### 一键部署
+### 环境部署
 
-1. 克隆仓库:
-
-```bash
-git clone [仓库地址]
-cd 上证指数开盘预测系统
-```
-
-2. 设置环境变量:
+使用部署脚本安装依赖并构建前端：
 
 ```bash
-cp env.example .env
-```
-
-编辑 `.env` 文件，填入您的长桥 API 密钥:
-
-```
-LONGPORT_APP_KEY=您的APP_KEY
-LONGPORT_APP_SECRET=您的APP_SECRET
-LONGPORT_ACCESS_TOKEN=您的ACCESS_TOKEN
-```
-
-3. 一键部署命令:
-
-```bash
-# 安装依赖并启动应用
+# 安装依赖并构建前端
 bash deploy.sh
 ```
 
-### 手动部署
+### 启动服务
 
-1. 安装后端依赖:
+部署完成后，您可以分别启动后端和前端服务：
+
+#### 1. 启动后端服务 (API端口: 8080)
 
 ```bash
-pip install -r requirements.txt
+# 直接启动
+python3 app.py
+
+# 或使用nohup在后台运行
+nohup python3 app.py > api.log 2>&1 &
 ```
 
-2. 安装前端依赖:
+#### 2. 启动前端服务 (Web端口: 80)
+
+如果您希望在开发模式下运行前端（需要sudo权限运行在80端口）：
 
 ```bash
 cd frontend
-npm install
-npm run build
-cd ..
+sudo npm start
 ```
 
-3. 启动服务:
+#### 3. 使用构建好的生产版本
+
+如果您已经运行了部署脚本，前端已经构建好并配置给Flask服务。
+只需启动后端服务，然后访问 `http://localhost:8080` 即可。
+
+#### 4. 使用其他静态服务器
+
+您也可以使用其他静态服务器托管前端构建文件：
 
 ```bash
-python app.py
+# 安装serve
+npm install -g serve
+
+# 启动服务在80端口
+sudo serve -s frontend/build -l 80
 ```
-
-4. 访问网站:
-
-打开浏览器访问 `http://localhost:5000`
 
 ## 开发模式
 
-### 后端开发
+### 1. 后端开发（端口8080）
 
 ```bash
-python app.py
+python3 app.py
 ```
 
-### 前端开发
+### 2. 前端开发（端口80）
 
 ```bash
 cd frontend
-npm start
+sudo npm start
 ```
 
-前端开发服务器将在 `http://localhost:3000` 启动，并自动代理API请求到后端。
+前端开发服务器将在 `http://localhost:80` 启动，并自动代理API请求到后端的 `http://localhost:8080`。
+
+## 额外说明
+
+- 如果没有配置长桥API密钥，系统会使用模拟数据。
+- 页面每分钟自动刷新一次数据。
+- 开发模式下前端使用80端口可能需要管理员权限（sudo）。
