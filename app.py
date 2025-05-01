@@ -82,7 +82,7 @@ def get_market_data():
             y = float(percentage_changes["FXI.US"])
             
             # 计算预测值 z = 0.4*x + 0.6*y
-            z = 0.4 * x + 0.6 * y
+            z = 0.2 * x + 0.8 * y
             
             # 判断上证指数预测开盘情况
             if z > 0.5:
